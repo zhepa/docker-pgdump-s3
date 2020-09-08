@@ -1,7 +1,7 @@
-FROM node:8.15-alpine
-RUN mkdir -p /usr/src/app
+FROM postgres:13
+
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN npm install
-RUN apk add --no-cache postgresql
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && apt-get install -y nodejs && npm install
+
 CMD ["node", "index.js"]
